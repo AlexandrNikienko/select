@@ -56,7 +56,7 @@ body {
 	&__item {
 		padding: 0.5rem 1rem;
 		border-top: 1px solid $border-color;
-		
+
 		&:last-of-type {
 			border-bottom: 1px solid $border-color;
 		}
@@ -67,23 +67,54 @@ body {
 
 		&:hover {
 			cursor: pointer;
-			background-color: lighten($border-color, .5);
-			transition: background-color .1s;
+			background-color: lighten($border-color, 0.5);
+			transition: background-color 0.1s;
 		}
-	}
-
-	&__placeholder,
-	.fas {
-		pointer-events: none;
 	}
 
 	&.is-open {
 		.select__dropdown {
 			display: block;
+			height: 300px;
 		}
 
-		.fa-chevron-down {
-			transform: rotateX(180deg);
+		.select__arrow {
+			span {
+				&:first-of-type {
+					transform: rotate(-45deg);
+				}
+
+				&:last-of-type {
+					transform: rotate(45deg);
+				}
+			}
+		}
+	}
+
+	&__arrow {
+		width: 1.25rem;
+		height: 1.25rem;
+		display: inline-block;
+		position: relative;
+
+		span {
+			top: 0.5rem;
+			position: absolute;
+			width: 0.75rem;
+			height: 0.1rem;
+			background-color: $border-color;
+			display: inline-block;
+			transition: transform 0.1s ease-in-out;
+
+			&:first-of-type {
+				left: 0;
+				transform: rotate(45deg);
+			}
+
+			&:last-of-type {
+				right: 0;
+				transform: rotate(-45deg);
+			}
 		}
 	}
 }

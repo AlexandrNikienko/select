@@ -2,7 +2,7 @@ export interface Options {
 	placeholder: string,
 	selectedId: null | number,
 	data: Item[],
-	onSelect(item: Item) : void
+	onSelect(item: Item): void
 }
 
 export interface Item {
@@ -17,7 +17,7 @@ const getTemplate = (data = [], placeholder = 'Please select') => {
 
 	return `<div class="select__input" data-type="input">
 				<span class="select__placeholder" data-type="placeholder">${placeholder}</span>
-				<i class="fas fa-chevron-down"></i>
+				<div class="select__arrow"><span></span><span></span></div>
 			</div>
 
 			<div class="select__dropdown">
@@ -31,7 +31,7 @@ export class Select {
 	private options: Options;
 	private el: HTMLElement;
 	private selectedId: number;
-	private placeholder: HTMLElement; 
+	private placeholder: HTMLElement;
 
 	constructor(selector: string, options: Options) {
 		this.options = options;
@@ -55,7 +55,7 @@ export class Select {
 		this.placeholder = this.el.querySelector('[data-type="placeholder"');
 		this.selectedId ? this.select(this.selectedId) : null;
 
-		document.addEventListener('click', function(e: Event & {target: HTMLInputElement}) {
+		document.addEventListener('click', function (e: Event & { target: HTMLInputElement }) {
 			if (!e.target.closest('.select') && self.isOpen) {
 				self.close();
 			}
